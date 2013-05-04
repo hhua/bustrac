@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Map | Bus Trac</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
+		<link rel="stylesheet" href="css/style.css">
+		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
+		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+		<script type="text/javascript" src="js/jquery.ui.map.full.min.js"></script>
+		<script type="text/javascript">
+		var locations = [["CMU Alumni Networking", "40.45", "-79.8", "UC Mcconomy Hall", "eventdetail.html", "img/event_small/alumni_networking.png"],["Music Show", "40.44", "-80", "Carnegie Music Hall", "eventdetail.html", "img/event_small/music_show.png"],["Entrepreneur Workshop", "40.436", "-79.88", "University of Pittsburgh", "eventdetail.html", "img/event_small/entrepreneur_workshop.png"], ["CMU Summit", "40.46", "-79.9", "UC Mcconomy Hall", "eventdetail.html", "img/event_small/cmu_summit.png"], ["Pittsburgh Mobile Conference", "40.455", "-79.95", "UC Mcconomy Hall", "eventdetail.html", "img/event_small/pittsburgh_mobile.png"], ["Facebook Hackathon", "40.44", "-79.85", "GHC 4301", "eventdetail.html", "img/event_small/facebook_hackathon.png"], ["Lecture on Social Network", "40.42", "-79.9", "UC Mcconomy Hall", "eventdetail.html", "img/event_small/social_network.png"], ["Google Tech Talk", "40.43", "-79.96", "UC Mcconomy Hall", "eventdetail.html", "img/event_small/google_techtalk.png"]];
+
+		var contentStrings = [];
+
+		var cur_latitude = -34.397;
+		var cur_longitude = 150.644;
+
+		$(function() {
+			$('#map_canvas').gmap().bind('init', function() {
+				$.each(locations, function(i, marker) {
+					$('#map_canvas').gmap('addMarker', {
+						'position': new google.maps.LatLng(marker[1], marker[2]),
+						'bounds': true
+					}).click(function() {
+						var contentString ='<div><img src="' + marker[5] + '" /><div id="mapdetail" style="float:right; text-align: left;"><a href="' + marker[4] + '"><h4 class="text-left">' + marker[0]
+							+ '</h4></a><p class="text-left">' + marker[3]
+							+ '</p></div></div>';
+						$('#map_canvas').gmap('openInfoWindow', { 'content': contentString }, this);
+					});
+				});
+			});
+		});
+		</script>
+	</head>
+	<body>
+	<div data-role="page">
+	<div data-role="header">
+		<a href="#" data-ajax="false" data-icon="home">Back</a>
+	<!--	<a href="filter.html" data-icon="gear" class="ui-btn-right" data-rel="dialog">Filter</a>-->
+	</div>
+	<div data-role="content">
+		<div id="map_canvas" style="margin: 0; width:100%; height:350px"></div>
+	</div>
+	<div id="footer" data-role="footer">
+		<div data-role="navbar">
+		<ul>
+			<li><a href="search.html">Search</a></li>
+			<li><a href="tripplanner.html" class="ui-btn-active" data-ajax="false">Trip Planner</a></li>
+			<li><a href="scheduler.html">Scheduler</a></li>
+			<li><a href="map.html" data-ajax="false">Bus Tracking</a></li>
+		</ul>
+		</div>
+	</div>
+</div>
+	</body>
+</html>
