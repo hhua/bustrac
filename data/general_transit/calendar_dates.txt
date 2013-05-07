@@ -1,0 +1,13 @@
+service_id,date,exception_type
+1303-Collier-Weekday-24,20130527,2
+1303-Collier-Sunday-12,20130527,1
+1303-Liberty-Weekday-24,20130527,2
+1303-Liberty-Sunday-11,20130527,1
+1303-Mifflin-Weekday-28,20130527,2
+1303-Mifflin-Sunday-13,20130527,1
+1303-Ross-Weekday-23,20130527,2
+1303-Ross-Sunday-12,20130527,1
+1303-Village-Weekday-25,20130527,2
+1303-Village-Sunday-15,20130527,1
+W,20130527,2
+U,20130527,1

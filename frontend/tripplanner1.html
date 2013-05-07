@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Trip Planner</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/jquery.mobile.datebox.css" />
+		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
+		<script type="text/javascript" src="http://dev.jtsage.com/cdn/datebox/latest/jqm-datebox.core.min.js"></script>
+		<script type="text/javascript" src="http://dev.jtsage.com/cdn/datebox/latest/jqm-datebox.mode.calbox.min.js"></script>
+		<script type="text/javascript" src="http://dev.jtsage.com/cdn/datebox/latest/jqm-datebox.mode.flipbox.min.js"></script>
+		<script type="text/javascript">
+		$('div').live('pagecreate', function() {
+			prettyPrint();
+		});
+
+
+	</script>
+	
+	</head>
+	<body>
+	<div data-role="page">
+	<div data-role="header">
+		<a href="tripplanner.html" data-ajax="false" data-icon="home">Back</a>
+	</div>
+	<div data-role="content">
+		
+			<ul id="settings_filter">
+				
+					<li><a href="#">323 Morewood Avenue</a></li>
+					<li><a href="#">417 South Craig</a></li>
+			</ul>
+	
+
+		<div data-role='fieldcontain'> 
+  <label for='vendor'>Depart at</label> 
+  <ul id="settings_filter">
+				
+					<li><a href="#">Today</a></li>
+					<li><a href="#">12:00 pm</a></li>
+			</ul>
+</div>
+
+<div data-role="fieldcontain" style="margin-top: 50px;">
+
+  <ul data-role="listview">
+    <li><a href="triplanner2.html" data-ajax="false">12:00am - 12:15am (15min)(71A) NEGLEY DOWNTOWN VIA OAKLAND Inbound</a></li>
+    <li><a href="#">12:00am - 12:15am (15min)(54) OAKLAND-SOUTH SIDE BON AIR VIA POLISH HILL </a></li>
+    <li><a href="#">01:00pm - 01:15pm (15min)(71C) POINT BREEZE DOWNTOWN VIA OAKLAND Inbound</a></li>
+    <li><a href="#">12:00am - 12:15am (15min)(71A) NEGLEY DOWNTOWN VIA OAKLAND Inbound</a></li>
+</ul>
+</div>
+
+	</div>
+
+
+
+
+
+
+	<div id="footer" data-role="footer">
+		<div data-role="navbar">
+		<ul>
+			<li><a href="tripplanner.html" class="ui-btn-active" data-ajax="false">Trip Planner</a></li>
+			<li><a href="scheduler.html">Scheduler</a></li>
+			<li><a href="tracking.html" data-ajax="false">Bus Tracking</a></li>
+		</ul>
+		</div>
+	</div>
+</div>
+	</body>
+</html>
