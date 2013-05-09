@@ -48,11 +48,17 @@
        travelMode: google.maps.DirectionsTravelMode.TRANSIT
      };
 
-     directionsService.route(request, function(response, status) {
-       if (status == google.maps.DirectionsStatus.OK) {
-         directionsDisplay.setDirections(response);
-       }
-     });		
+    directionsService.route(request, function(response, status) {
+                        if (status == google.maps.DirectionsStatus.OK) {
+                            directionsDisplay.setDirections(response); 
+                            $("#results").show();
+                           
+                        }
+                        else {
+                            $("#results").hide();
+                        }
+                    });
+
      </script>
 	</head>
 	<body>
