@@ -177,3 +177,10 @@ fieldset.ui-corner-all.ui-controlgroup.ui-controlgroup-vertical .ui-controlgroup
 .attending .no{
 	color: red;
 }
+
+.ui-input-search .ui-input-clear, .ui-input-text .ui-input-clear{
+	position: absolute;
+	right: 0;
+	top: 0;
+
+}
