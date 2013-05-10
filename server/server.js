@@ -3,9 +3,16 @@ var express = require('express');
 function start(route, handle){
 	var app = express();
 	app.use(express.logger());
+	app.use(express.bodyParser()); // Automatically parses form data
+
 
 	app.get('/' , function(req, res){
-		route(handle, '/', res);
+		route(handle, '/', req, res);
+	});
+
+	app.post('/bus_station', function(req, res){
+		console.log(req.body);
+		route(handle, '/bus_station', req, res);
 	});
 
 	app.use(express.static('./data'));

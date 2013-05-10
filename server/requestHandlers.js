@@ -1,7 +1,7 @@
 
 
-function track(response) {
-  console.log("Request handler 'map' was called.");
+function track(request, response) {
+  console.log("Request handler 'track' was called.");
 
   //response.sendfile(__dirname + '/html/test.html');
   response.sendfile('./frontend/tracking.html');
@@ -21,4 +21,10 @@ function getAllCities(response){
   response.end();
 }*/
 
+function station(request, response){
+  console.log("Request handler 'station' was called.");
+  response.sendfile('./frontend/tracking2.html');
+}
+
 exports.track = track;
+exports.station = station;
