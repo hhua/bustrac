@@ -14,12 +14,9 @@
         <script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3&sensor=false&language=en"></script>
         <script type="text/javascript">
         
-        
-        
             $(document).on("pageinit", "#map_page", function() {
                 initialize();
             });
-
 
             var directionDisplay,
                 directionsService = new google.maps.DirectionsService(),
@@ -50,10 +47,11 @@
     directionsService.route(request, function(response, status) {
                         
                             directionsDisplay.setDirections(response); 
-                            $("#results").show();
+                            $("#results").show(); 
                         
                     });
-                     /* console.log(JSON.stringify(response, null, 7)); */
+                     
+                     console.log(JSON.stringify(response, null, 7));
 
 
      </script>
