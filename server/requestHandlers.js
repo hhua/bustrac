@@ -30,6 +30,12 @@ function allstops(request, response) {
   response.end();
 }
 
+function planner(request, response){
+  console.log("Request handler 'planner' was called.");
+
+  response.sendfile('./frontend/tripplanner.html');
+}
+
 function station(request, response){
   console.log("Request handler 'station' was called.");
   response.sendfile('./frontend/tracking2.html');
@@ -38,3 +44,4 @@ function station(request, response){
 exports.track = track;
 exports.allstops = allstops;
 exports.station = station;
+exports.planner = planner;

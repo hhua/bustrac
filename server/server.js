@@ -13,8 +13,8 @@ function start(route, handle){
 		route(handle, '/allstops', req, res);
 	});
 
-	app.get('/trip_planner', function(req, res){
-
+	app.get('/planner', function(req, res){
+		route(handle, '/planner', req, res);
 	});
 
 	app.get('/scheduler', function(req, res){
