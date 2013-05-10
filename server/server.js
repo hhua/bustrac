@@ -5,13 +5,24 @@ function start(route, handle){
 	app.use(express.logger());
 	app.use(express.bodyParser()); // Automatically parses form data
 
-
 	app.get('/' , function(req, res){
 		route(handle, '/', req, res);
 	});
 
+	app.get('/allstops', function(req, res){
+		route(handle, '/allstops', req, res);
+	});
+
+	app.get('/trip_planner', function(req, res){
+
+	});
+
+	app.get('/scheduler', function(req, res){
+
+	});
+
 	app.post('/bus_station', function(req, res){
-		console.log(req.body);
+		//console.log(req.body);
 		route(handle, '/bus_station', req, res);
 	});
 

@@ -4,13 +4,17 @@
 		<title>Tracking | Bus Trac</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
+		<link rel="stylesheet" href="css/style.css">
 		<style type="text/css" media="screen">
 			#list{
 				margin-top: 0;
 			}
+
+			.ui-input-search .ui-input-clear, .ui-input-text .ui-input-clear{
+				margin-top: 4px;
+			}
 		</style>
-		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
-		<link rel="stylesheet" href="css/style.css">
 		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 		<script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
 	</head>
@@ -18,7 +22,7 @@
 	<div data-role="page">
 	
 	<div id="list" data-role="content">
-		<ul data-role="listview" data-filter="true" data-filter-reveal="true" data-filter-placeholder="Bus Stops, Routes or Street Corners">
+		<ul id="stoplist" data-role="listview" data-filter="true" data-filter-reveal="true" data-filter-placeholder="Bus Stops, Routes or Street Corners">
 		    <li>
 		    	<form action="/bus_station" method="post">
 		    		<input type="hidden" name="station" value="5TH AVE AT CRAIG ST" />
@@ -54,5 +58,19 @@
 	<!-- end of footer -->
 
 	</div>
+	<script type="text/javascript">
+		// get stops
+        $(function(){
+            $.ajax({
+            url: '/allstops', //the URL to your node.js server that has data
+            dataType: 'json',
+            cache: false
+            }).done(writeStops);
+        });
+
+        function writeStops(data){
+        	console.log(data);
+        }
+	</script>
 	</body>
 </html>
