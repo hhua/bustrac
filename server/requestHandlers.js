@@ -3,8 +3,8 @@
 function track(request, response) {
   console.log("Request handler 'track' was called.");
 
-  response.sendfile('./views/tracking.html');
-
+  //response.sendfile('./views/tracking.html');
+  response.render('../views/tracking');
 }
 
 function allstops(request, response) {
@@ -20,9 +20,7 @@ function allstops(request, response) {
         console.log(array[i]);
     }
   });
-
   
-
   var stops = [];
   response.write(
     JSON.stringify(stops)
@@ -47,7 +45,7 @@ function planner1(request, response){
 
 function station(request, response){
   console.log("Request handler 'station' was called.");
-  response.sendfile('./views/tracking2.html');
+  response.render('../views/tracking2');
 }
 
 function tripplan(request, response){
@@ -59,8 +57,6 @@ function tripplan(request, response){
   var dest = request.body.dest;
   var date = request.body.date;
   var time = request.body.time;
-
-  console.log(time);
 
   response.render('../views/tripplanner1', {origin: origin, dest: dest, date: date, time: time});
 }

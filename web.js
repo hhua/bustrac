@@ -13,4 +13,3 @@ handle["/tripplan"] = requestHandlers.tripplan;
 
 server.start(router.route, handle);
 
-
