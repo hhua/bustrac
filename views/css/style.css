@@ -1,0 +1,186 @@
+.ui-header {
+	position: fixed;
+	top: 0px;
+	width: 100%;
+	z-index: 100;
+	height: 40px;
+}
+
+.ui-header img {
+	display: block;
+	margin: 0px auto;
+	padding: 5px 0px;
+	height: 30px;
+}
+
+.detail_img {
+	display: inline-block;
+	float: left;
+	padding-right: 15px;
+}
+
+.ui-content {
+	margin: 35px 0px;
+}
+
+.friends_icon {
+	border-radius: 3px;
+	margin-bottom: 15px;
+}
+
+#event-list {
+	margin-top: 10px;
+}
+
+.event-detail p,h3 {
+	margin: 8px 0px;
+	line-height: 1.25em;
+}
+
+.container {
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 5px;
+}
+
+.container p {
+	margin: 8px;
+	text-decoration: none;
+	color: black;
+}
+
+#friend_container {
+	width: 100%;
+	overflow-x: scroll;
+	overflow-y: hidden;
+}
+
+.friend_list {
+	height: 85px;
+}
+
+.friend {
+	display: inline-block;
+	font-size: 12px;
+	vertical-align: top;
+}
+
+.img_container {
+	height: 75px;
+	width: 75px;
+	overflow: hidden;
+}
+
+#footer {
+	position: fixed;
+	left: 0px;
+	bottom: 0px;
+	width: 100%;
+	z-index: 100;
+}
+
+#going_button {
+	font-weight: bold;
+	width: 100%;
+}
+
+#going_popup {
+	font-size: 24px;
+}
+
+fieldset.ui-corner-all.ui-controlgroup.ui-controlgroup-vertical .ui-controlgroup-label {
+	width: 100%;
+}
+
+/*
+* Definition of new icons
+*/
+.ui-icon-nearby {
+	background-image: url("img/png/glyphicons_417_rss.png");
+
+}
+
+/*
+* Settings.html
+*/
+.setting_option {
+	width: 100%;
+}
+
+.setting_option label.ui-slider {
+	display: inline-block;
+	vertical-align: middle;
+	padding: 8px 0px 8px 10px;
+	width: 175px;
+}
+
+.setting_option div.ui-slider-switch.ui-slider-mini {
+	display: inline-block;
+	vertical-align: middle;
+	width: 5em;
+	padding-right: 0;
+	margin-right: 0;
+}
+
+#settings_filter {
+	list-style-type: none;
+	margin: 0px;
+	padding: 10px;
+	text-shadow: 0px 0px;
+}
+
+#settings_filter a {
+	text-decoration: none;
+}
+
+#settings_filter li {
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	padding: 10px;
+	background-color: #e5e5e5;
+}
+
+#settings_filter li:nth-child(odd) {
+	background-color: #c9c9c9;
+}
+
+#settings_filter li:hover {
+	background-color: #b4bec3;
+}
+
+.ui-field-contain label.ui-input-text {
+	width: 90%;
+}
+
+.ui-popup-container {
+	width: 80%;
+}
+
+.attending{
+
+	margin-bottom: 0px;
+	padding-bottom: 0px;
+	font-weight: bold;
+	font-size: 13px;
+	text-align: left;
+}
+
+.attending .yes{
+	color: green;
+}
+
+.attending .maybe{
+	color: orange;
+}
+
+.attending .no{
+	color: red;
+}
+
+.ui-input-search .ui-input-clear, .ui-input-text .ui-input-clear{
+	position: absolute;
+	right: 0;
+	top: 0;
+
+}
