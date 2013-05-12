@@ -62,7 +62,7 @@
 
         	for(var i in data){
         		//console.log(data[i][1]);
-        		list.append('<li class="ui-li ui-li-static ui-btn-up-c ui-screen-hidden"><form action="/bus_station" method="post"><input type="hidden" name="stop_id" value="' + data[i][0] + '" /><a href="#" class="ui-link" onclick="$(this).closest(\'form\').submit();">' + data[i][1] + '</a></form></li>');
+        		list.append('<li class="ui-li ui-li-static ui-btn-up-c ui-screen-hidden"><form action="/bus_station" method="post"><input type="hidden" name="stop_id" value="' + data[i][0] + '" /><input type="hidden" name="stop_name" value="' + data[i][1] + '" /><a href="#" class="ui-link" onclick="$(this).closest(\'form\').submit();">' + data[i][1] + '</a></form></li>');
         	}
         }
 
