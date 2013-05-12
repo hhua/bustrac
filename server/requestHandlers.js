@@ -40,6 +40,12 @@ function allstops(request, response) {
   
 }
 
+function bus_station(request, response){
+  console.log("Request handler 'bus_station' was called.");
+
+  response.redirect('/stop/' + request.body.stop_id + '/' + request.body.stop_name);
+}
+
 function planner(request, response){
   console.log("Request handler 'planner' was called.");
 
@@ -57,6 +63,14 @@ function planner1(request, response){
 
 function station(request, response){
   console.log("Request handler 'station' was called.");
+
+  //var stop = request.session.stop || {
+  //     stop_id: 'not set',
+  //     stop_name: 'not set'
+  // };
+
+  //var stop_id = stop['stop_id'];
+  //var stop_name = stop['stop_name'];
 
   var stop_id = request.body.stop_id;
   var stop_name = request.body.stop_name;
@@ -77,7 +91,7 @@ function station(request, response){
           continue;
 
         var date = new Date();
-        var hours = date.getHours() + 10; // + 10 for test
+        var hours = date.getHours(); // + 10 for test
         var minutes = date.getMinutes();
         var testHours = parseInt(item[1].substring(0, 2));
         var testMinutes = parseInt(item[1].substring(3, 5));
@@ -138,13 +152,89 @@ function station(request, response){
 
     //console.log(JSON.stringify(schedule, null, 3));
 
-    response.render('../views/tracking2', {schedule: schedule, stop_name: stop_name});
+    response.render('../views/tracking2', {schedule: schedule, stop_name: stop_name, stop_id: stop_id});
   }catch(err){
     throw err;
   }
 
 
   
+}
+
+function scheduler(request, response){
+  console.log("Request handler 'scheduler' was called.");
+
+  var route_id = request.body.route_id;
+  var stop_name = request.body.stop_name;
+  var stop_id = request.body.stop_id;
+  var route_shortname = request.body.route_shortname;
+
+  var fs = require('fs');
+  try{
+    // read trips
+    var tripsData = fs.readFileSync('./data/general_transit/trips.txt');
+    var array = tripsData.toString().split("\n");
+    var trips = {}; // {trip_id: trip_headsign, ...}
+    for(i in array){
+      if(i == 0)
+        continue;
+
+      var item = array[i].split(",");
+
+      if(route_id == item[0])
+        trips[item[2]] = item[3];
+    }
+
+    // read stop_times
+    var data = fs.readFileSync('./data/general_transit/stop_times.txt');
+
+    var bus = []; // [[trip_id, arrival_time], ...]
+    array = data.toString().split("\n");
+    for(i in array) {
+        if(i == 0)
+          continue;
+
+        var item = array[i].split(",");
+
+        if(stop_id != item[3])
+          continue;
+
+        if(!(item[0] in trips))
+          continue;
+
+        var date = new Date();
+        var hours = date.getHours(); // + 10 for test
+        var minutes = date.getMinutes();
+        var testHours = parseInt(item[1].substring(0, 2));
+        var testMinutes = parseInt(item[1].substring(3, 5));
+
+        if((testHours == hours && testMinutes > minutes) || (testHours == (hours + 1) && testMinutes <= minutes)){
+          bus.push([item[0], item[1]]);
+        }
+    }
+
+    bus.sort(function(a, b){
+      return a[1].localeCompare(b[1]);
+    });
+
+    var schedule = [];
+    for(i in bus){
+      var item = bus[i];
+
+      var entry = []; // [arrival_time, trip_headsign, route_short_name]
+      entry.push(item[1].substring(0, 5));
+      entry.push(trips[item[0]]);
+      entry.push(route_shortname);
+      schedule.push(entry);
+    }
+
+    //console.log(JSON.stringify(schedule, null, 3));
+
+    response.render('../views/tracking3', {schedule: schedule, stop_name: stop_name});
+  }catch(err){
+    throw err;
+  }
+
 }
 
 function tripplan(request, response){
@@ -163,7 +253,9 @@ function tripplan(request, response){
 
 exports.track = track;
 exports.allstops = allstops;
+exports.bus_station = bus_station;
 exports.station = station;
+exports.scheduler = scheduler;
 exports.planner = planner;
 exports.planner1 = planner1;
 exports.tripplan = tripplan;
