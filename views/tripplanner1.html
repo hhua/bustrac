@@ -16,15 +16,7 @@
 		<script type="text/javascript" src="http://dev.jtsage.com/cdn/datebox/latest/jqm-datebox.mode.flipbox.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="http://dev.jtsage.com/cdn/simpledialog/latest/jquery.mobile.simpledialog.min.css" />
 		<script type="text/javascript" src="http://dev.jtsage.com/cdn/simpledialog/latest/jquery.mobile.simpledialog2.min.js"></script>
-
-		<script type="text/javascript">
-
-		
-		$('div').live('pagecreate', function() {
-			prettyPrint();
-		});
-
-	</script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
 	 <script type="text/javascript"> 
 
      var directionsService = new google.maps.DirectionsService();
@@ -40,31 +32,30 @@
      //directionsDisplay.setMap(map);
      directionsDisplay.setPanel(document.getElementById('panel'));
 
+     // set input text
+     //var origin = $.cookie('origin');
+     //var dest = $.cookie('dest');
+
+     //console.log(typeof ($.cookie('origin')));
+
      var request = {
-       origin: '323 Morewood AVenue Pittsburgh', 
-       destination: 'WATERFRONT Pittsburgh',
+       origin: ($.cookie('origin')), 
+       destination: ($.cookie('dest')),
        travelMode: google.maps.DirectionsTravelMode.TRANSIT,
        provideRouteAlternatives: true
-        
      };
 
      directionsService.route(request, function(response, status) {
        if (status == google.maps.DirectionsStatus.OK) {
-       var route = response.routes[0];
-       var route1 =  response.routes[1];
-       var route2 = response.routes[2];
-       var route3 = response.routes[3];
-       //var parsedData = JSON.parse(JSON.stringify(response));
+        //var parsedData = JSON.parse(JSON.stringify(response));
     
-    
-    console.log(JSON.stringify(response, null, 7));
-    
-    document.getElementById('panel').innerHTML =  route.legs[0].steps[1].transit.departure_time.text+ "-" +route.legs[0].steps[1].transit.arrival_time.text + " " + "(" + route.legs[0].steps[1].duration.text + ")" + "(" + route.legs[0].steps[1].transit.line.short_name+ ")" + route.legs[0].steps[1].transit.headsign;
 
-    document.getElementById('route_2').innerHTML = route1.legs[0].steps[1].transit.departure_time.text+ "-" +route1.legs[0].steps[1].transit.arrival_time.text + " " + "(" + route1.legs[0].steps[1].duration.text + ")"+ "(" + route1.legs[0].steps[1].transit.line.short_name + ")"+ route.legs[0].steps[1].transit.headsign;
-         //directionsDisplay.setDirections(response);
-         document.getElementById('route_3').innerHTML = route2.legs[0].steps[1].transit.departure_time.text+ "-" +route2.legs[0].steps[1].transit.arrival_time.text + " " + "(" + route2.legs[0].steps[1].duration.text + ")"+ "(" + route2.legs[0].steps[1].transit.line.short_name +")" + route.legs[0].steps[1].transit.headsign;
-         document.getElementById('route_4').innerHTML = route.legs[0].steps[1].transit.departure_time.text+ "-" +route.legs[0].steps[1].transit.arrival_time.text + " "+ "(" + route3.legs[0].steps[1].duration.text + ")" + "(" + route3.legs[0].steps[1].transit.line.short_name + ")"+ route.legs[0].steps[1].transit.headsign;
+        for(var i = 0; i < 10; i++){
+          var route = response.routes[i];
+
+          $('#routelist').append('<li data-corner="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-iconpos="right" data-theme="c" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-first-child ui-btn-up-c"><div class="ui-btn-inner ui-li"><div class="ui-btn-text"><a href="triplanner2.html" data-ajax="false" class="ui-link-inherit">' + route.legs[0].steps[1].transit.departure_time.text+ '-' +route.legs[0].steps[1].transit.arrival_time.text + ' (' + route.legs[0].steps[1].duration.text + ')(' + route.legs[0].steps[1].transit.line.short_name+ ')' + route.legs[0].steps[1].transit.headsign + '</a></div><span class="ui-icon ui-icon-arrow-r ui-icon-shadow">&nbsp;</span></div></li>');
+        }
+
        }
      });
 
@@ -119,31 +110,24 @@ $(document).delegate('#opendialog1', 'click', function() {
 		<a href="tripplanner.html" data-ajax="false" data-icon="home">Back</a>
 	</div>
 	<div data-role="content">
-		
-			<ul id="settings_filter">
-				
-					<li><a href="#" id = "opendialog" >323 Morewood AVenue Pittsburgh</a></li>
-					<li><a href="#" id = "opendialog1">WATERFRONT Pittsburgh</a></li>
-					
-			</ul>
+				<div data-role="fieldcontain">
+					<input type="text" name="origin" id="origin" placeholder="My Location" value="">
+					<input type="text" name="dest" id="dest" placeholder="End Point" value="">
+        </div>
 	
 
 		<div data-role='fieldcontain'> 
-  <label for='vendor'>Depart at</label> 
-  <ul id="settings_filter">
+      <label for='vendor'>Depart at</label> 
+      <ul id="settings_filter">
 					<li><a href="#" >Today</a></li>
-					<li><a href="#" id = "opendialog">12:00pm</a></li>
+					<li><a href="#" id="opendialog">12:00pm</a></li>
 			</ul>
 </div>
 
 <div data-role="fieldcontain" style="margin-top: 50px;">
 
-  <ul data-role="listview">
-    <li ><a href="triplanner2.html" data-ajax="false" id ="panel"> </a></li>
-    <li ><a href="triplanner2.html"data-ajax="false" id ="route_2">1</a></li>
-    <li ><a href="triplanner2.html"data-ajax="false"id ="route_3"></a></li>
-    <li><a href="triplanner2.html"data-ajax="false"id ="route_4"></a></li>
-</ul>
+  <ul id="routelist" data-role="listview">
+  </ul>
 </div>
 
 	</div>
@@ -164,5 +148,14 @@ $(document).delegate('#opendialog1', 'click', function() {
 		</div>
 	</div>
 </div>
+  <script type="text/javascript">
+     // set input text
+     var origin = $.cookie('origin');
+     var dest = $.cookie('dest');
+     var date = $.cookie('date');
+
+     $('#origin').val(origin);
+     $('#dest').val(dest);
+  </script>
 	</body>
 </html>

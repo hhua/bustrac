@@ -12,7 +12,16 @@
 		<script type="text/javascript" src="http://dev.jtsage.com/cdn/datebox/latest/jqm-datebox.core.min.js"></script>
 		<script type="text/javascript" src="http://dev.jtsage.com/cdn/datebox/latest/jqm-datebox.mode.calbox.min.js"></script>
 		<script type="text/javascript" src="http://dev.jtsage.com/cdn/datebox/latest/jqm-datebox.mode.flipbox.min.js"></script>
-	
+		<script type="text/javascript" src="js/jquery.cookie.js"></script>
+		<script type="text/javascript">
+			function getRoute(){
+				$.cookie('origin', $('#origin').val(), { expires: 7, path: '/' });
+				$.cookie('dest', $('#dest').val(), { expires: 7, path: '/' });
+				$.cookie('date', $('#date').val(), { expires: 7, path: '/' });
+				//$.cookie('time', $('#dest').val(), { expires: 7, path: '/' });
+
+			}
+		</script>
 
 	</head>
 	<body>
@@ -23,8 +32,8 @@
 	<form action="/tripplan" method="post">
 	<div data-role="content">
 		<div data-role="fieldcontain">
-			<input type="text" name="origin" id="textinput-fc" placeholder="My Location" value=""><br>
-			<input type="text" name="dest" id="textinput-fc" placeholder="End Point" value="">
+			<input type="text" name="origin" id="origin" placeholder="My Location" value=""><br>
+			<input type="text" name="dest" id="dest" placeholder="End Point" value="">
 		</div>
 		<label for="select-choice-mini" class="select">Prefer</label>
 		
@@ -38,7 +47,7 @@
     </fieldset>
 
 
-<input name="date" id="mydate" type="date" data-role="datebox" data-options='{"mode":"flipbox","useFocus": true}'>
+<input name="date" id="date" type="date" data-role="datebox" data-options='{"mode":"flipbox","useFocus": true}' />
    
 <div data-role="fieldcontain">
     <label for="select-native-1">Time</label>
@@ -69,7 +78,7 @@
         <option value="24">11:00pm</option>
     </select>
     <p>
-    <a href="tripplanner1.html" data-role="button" data-ajax="false"  data-mini="true" data-inline="true" data-icon="check" data-theme="b" >Plan Your trip</a>
+    <a href="tripplanner1.html" data-role="button" data-ajax="false"  data-mini="true" data-inline="true" data-icon="check" data-theme="b" onclick="getRoute()">Plan Your trip</a>
 	</p>
 </div>
 </form>
@@ -85,5 +94,6 @@
 		</div>
 	</div>
 </div>
+
 	</body>
 </html>
