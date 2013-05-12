@@ -12,20 +12,32 @@ function allstops(request, response) {
 
   response.writeHead(200, {"Content-Type": "application/json"});
 
+  var stops = [];
   var fs = require('fs');
-  fs.readFile('./data/general_transit/stops.txt', function(err, data) {
-    if(err) throw err;
+
+  try{
+    var data = fs.readFileSync('./data/general_transit/stops.txt');
+
     var array = data.toString().split("\n");
     for(i in array) {
-        console.log(array[i]);
+        if(i == 0)
+          continue;
+
+        var location = [];
+        var item = array[i].split(",");
+        location.push(item[0]);
+        location.push(item[2].substring(1, item[2].length - 1));
+        stops.push(location);
     }
-  });
+
+    response.write(
+      JSON.stringify(stops)
+    );
+    response.end();
+  }catch(err){
+    throw err;
+  }
   
-  var stops = [];
-  response.write(
-    JSON.stringify(stops)
-  );
-  response.end();
 }
 
 function planner(request, response){

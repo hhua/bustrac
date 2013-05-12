@@ -23,24 +23,13 @@
 	
 	<div id="list" data-role="content">
 		<ul id="stoplist" data-role="listview" data-filter="true" data-filter-reveal="true" data-filter-placeholder="Bus Stops, Routes or Street Corners">
+			<!--
 		    <li>
 		    	<form action="/bus_station" method="post">
 		    		<input type="hidden" name="station" value="5TH AVE AT CRAIG ST" />
 		    		<a href="#" onclick="$(this).closest('form').submit();">5TH AVE AT CRAIG ST</a>
 		    	</form>
-		    </li>
-		    <li><a href="tracking2.html">5TH AVE AT CRAIG ST NS</a></li>
-		    <li><a href="tracking2.html">BAUM BLVD AT CRAIG ST FS</a></li>
-		    <li><a href="tracking2.html">BIGELOW BLVD AT CRAIG</a></li>
-		    <li><a href="tracking2.html">CENTRE AVE AT CRAIG ST</a></li>
-		    <li><a href="tracking2.html">CENTRE AVE AT CRAIG ST NS</a></li>
-		    <li><a href="tracking2.html">CRAIG ST AT 5TH AVE</a></li>
-		    <li><a href="tracking2.html">CRAIG ST AT BAUM BLVD FS</a></li>
-		    <li><a href="tracking2.html">CRAIG ST AT BAYARD ST</a></li>
-		    <li><a href="tracking2.html">CRAIG ST OPP BIGELOW BLVD</a></li>
-		    <li><a href="tracking2.html">CRAIG ST AT BIGELOW BLVD FS</a></li>
-		    <li><a href="tracking2.html">CRAIG ST AT CENTRE AVE</a></li>
-		    <li><a href="tracking2.html">CRAIG ST AT FORBES</a></li>
+		    </li>-->
 		</ul>
 	</div>
 	<!-- end of content -->
@@ -69,9 +58,12 @@
         });
 
         function writeStops(data){
-        	console.log(data);
+        	var list = $('#stoplist');
 
-        	
+        	for(var i in data){
+        		//console.log(data[i][1]);
+        		list.append('<li class="ui-li ui-li-static ui-btn-up-c ui-screen-hidden"><form action="/bus_station" method="post"><input type="hidden" name="stop_id" value="' + data[i][0] + '" /><a href="#" class="ui-link" onclick="$(this).closest(\'form\').submit();">' + data[i][1] + '</a></form></li>');
+        	}
         }
 
 
