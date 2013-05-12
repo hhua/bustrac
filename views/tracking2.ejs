@@ -21,7 +21,12 @@
 	<div id="list" data-role="content"  style="margin-top: 42px;">	
 		<ul id="buslist" data-role="listview">
 		    <% for(i in schedule){ %>
-				<li><form action="/scheduler" method="post"><input type="hidden" name="stop_name" value="<%= stop_name %>" /><input type="hidden" name="route_id" value="<%= schedule[i][2] %>" /><input type="hidden" name="route_shortname" value="<%= schedule[i][4] %>" /><input type="hidden" name="stop_id" value="<%= stop_id %>" /><a href="#" class="route" onclick="$(this).closest('form').submit();"><%= schedule[i][4] %> @<%= schedule[i][0] %><br /><%= schedule[i][3] %></a></form></li>
+				<li><form action="/scheduler" method="post"><input type="hidden" name="stop_name" value="<%= stop_name %>" /><input type="hidden" name="route_id" value="<%= schedule[i][2] %>" /><input type="hidden" name="route_shortname" value="<%= schedule[i][4] %>" /><input type="hidden" name="stop_id" value="<%= stop_id %>" />
+					<!--<a href="#" class="route" onclick="$(this).closest('form').submit();">-->
+					<a href="tracking3.html">
+						<%= schedule[i][4] %> @<%= schedule[i][0] %><br /><%= schedule[i][3] %>
+					</a>
+				</form></li>
 		    <% } %>
 		</ul>
 	</div>

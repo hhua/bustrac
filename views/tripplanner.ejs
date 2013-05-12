@@ -18,7 +18,7 @@
 				$.cookie('origin', $('#origin').val(), { expires: 7, path: '/' });
 				$.cookie('dest', $('#dest').val(), { expires: 7, path: '/' });
 				$.cookie('date', $('#date').val(), { expires: 7, path: '/' });
-				//$.cookie('time', $('#dest').val(), { expires: 7, path: '/' });
+				$.cookie('time', $('#time').val(), { expires: 7, path: '/' });
 
 			}
 		</script>
@@ -47,36 +47,11 @@
     </fieldset>
 
 
-<input name="date" id="date" type="date" data-role="datebox" data-options='{"mode":"flipbox","useFocus": true}' />
+<input name="date" id="date" type="text" data-role="datebox" data-options='{"mode":"flipbox","closeCallback": "$(\"#time\").datebox(\"open\");"}' value=""/>
+
+<input name="time" id="time" type="text" data-role="datebox" data-options='{"mode":"timeflipbox","overrideTimeFormat": 12}' />
    
 <div data-role="fieldcontain">
-    <label for="select-native-1">Time</label>
-    <select name="time" id="select-native-1">
-        <option value="1">12:00am</option>
-        <option value="2">01:00am</option>
-        <option value="3">02:00am</option>
-        <option value="4">03:00am</option>
-        <option value="5">04:00am</option>
-        <option value="6">05:00am</option>
-        <option value="7">06:00am</option>
-        <option value="8">07:00am</option>
-        <option value="9">08:00am</option>
-        <option value="10">09:00am</option>
-        <option value="11">10:00am</option>
-        <option value="12">11:00am</option>
-        <option value="13">12:00pm</option>
-        <option value="14">01:00pm</option>
-        <option value="15">02:00pm</option>
-        <option value="16">03:00pm</option>
-        <option value="17">04:00pm</option>
-        <option value="18">05:00pm</option>
-        <option value="19">06:00pm</option>
-        <option value="20">07:00pm</option>
-        <option value="21">08:00pm</option>
-        <option value="22">09:00pm</option>
-        <option value="23">10:00pm</option>
-        <option value="24">11:00pm</option>
-    </select>
     <p>
     <a href="tripplanner1.html" data-role="button" data-ajax="false"  data-mini="true" data-inline="true" data-icon="check" data-theme="b" onclick="getRoute()">Plan Your trip</a>
 	</p>
@@ -86,7 +61,7 @@
 	<div id="footer" data-role="footer">
 		<div data-role="navbar">
 		<ul>
-			<li><a href="/track" data-ajax="false">Bus Tracking</a></li>
+			<li><a href="/track" data-ajax="false">Wherebus</a></li>
 			<li><a href="/planner" class="ui-btn-active" data-ajax="false">Trip Planner</a></li>
 			<li><a href="scheduler.html"data-ajax="false">Scheduler</a></li>
 			
@@ -94,6 +69,14 @@
 		</div>
 	</div>
 </div>
+	<script type="text/javascript">
+		$(function(){
+			var date = new Date();
 
+			$('#date').val(date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate());
+
+			$('#time').val(date.getHours() + ':' + date.getMinutes());
+		});
+	</script>
 	</body>
 </html>

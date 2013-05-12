@@ -50,7 +50,7 @@
         //var parsedData = JSON.parse(JSON.stringify(response));
     
 
-        for(var i = 0; i < 10; i++){
+        for(var i = 0; i < response.routes.length; i++){
           var route = response.routes[i];
 
           $('#routelist').append('<li data-corner="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-iconpos="right" data-theme="c" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-first-child ui-btn-up-c"><div class="ui-btn-inner ui-li"><div class="ui-btn-text"><a href="triplanner2.html" data-ajax="false" class="ui-link-inherit">' + route.legs[0].steps[1].transit.departure_time.text+ '-' +route.legs[0].steps[1].transit.arrival_time.text + ' (' + route.legs[0].steps[1].duration.text + ')(' + route.legs[0].steps[1].transit.line.short_name+ ')' + route.legs[0].steps[1].transit.headsign + '</a></div><span class="ui-icon ui-icon-arrow-r ui-icon-shadow">&nbsp;</span></div></li>');
@@ -116,13 +116,11 @@ $(document).delegate('#opendialog1', 'click', function() {
         </div>
 	
 
-		<div data-role='fieldcontain'> 
-      <label for='vendor'>Depart at</label> 
-      <ul id="settings_filter">
-					<li><a href="#" >Today</a></li>
-					<li><a href="#" id="opendialog">12:00pm</a></li>
-			</ul>
-</div>
+		<div data-role='fieldcontain' style="margin-top: 50px;"> 
+      <label for='vendor'>Depart at</label><br />
+      <input name="date" id="date" type="date" data-role="datebox" data-options='{"mode":"flipbox","useFocus": true}' />
+      <input name="time" id="time" type="text" data-role="datebox" data-options='{"mode":"timeflipbox","overrideTimeFormat": 12}' />
+    </div>
 
 <div data-role="fieldcontain" style="margin-top: 50px;">
 
@@ -140,7 +138,7 @@ $(document).delegate('#opendialog1', 'click', function() {
 	<div id="footer" data-role="footer">
 		<div data-role="navbar">
 		<ul>
-      <li><a href="/track" data-ajax="false">Bus Tracking</a></li>
+      <li><a href="/track" data-ajax="false">Wherebus</a></li>
 			<li><a href="/planner" class="ui-btn-active" data-ajax="false">Trip Planner</a></li>
 			<li><a href="scheduler.html">Scheduler</a></li>
 			
@@ -153,9 +151,15 @@ $(document).delegate('#opendialog1', 'click', function() {
      var origin = $.cookie('origin');
      var dest = $.cookie('dest');
      var date = $.cookie('date');
+     var time = $.cookie('time');
 
      $('#origin').val(origin);
      $('#dest').val(dest);
+     $('#date').val(date);
+     $('#time').val(time);
+
+     console.log(origin);
+     console.log(dest);
   </script>
 	</body>
 </html>
