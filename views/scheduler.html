@@ -36,6 +36,7 @@
     		<option value="route0">1 - FreeRoad</option>
     		<option value="route1">2 - Mount Royal</option>
     		<option value="route2">4 - Troy Hill</option>
+            <option value="route2">71C - Point Breeze</option>
 			</select>
 		</div>
 
@@ -48,40 +49,22 @@
     </fieldset>
 </form>
 
- <label for="select-native-1">Date</label>
-<input name="mydate" id="mydate" type="date" data-role="datebox"
-   data-options='{"mode":"calbox","useFocus": true}'>
+ <label for="linked1">Date</label>
+        
+<input name="linked1" type="text" data-role="datebox" id="linked1" 
+    data-options='{"mode": "flipbox", "closeCallback": "$(\"#linked2\").datebox(\"open\");"}' />
+    
+<label for="linked2">Time</label>
+        
+<input name="linked2" type="text" data-role="datebox" id="linked2"
+    data-options='{"mode": "timeflipbox","overrideTimeFormat":12}'/>
    <form>
-<div data-role="fieldcontain">
-    <label for="select-native-1">Time</label>
-    <br />
 
-    <select name="time" class="TimeClass">
-        <option value="1">12:00am</option>
-        <option value="2">01:00am</option>
-        <option value="3">02:00am</option>
-        <option value="4">03:00am</option>
-        <option value="5">04:00am</option>
-        <option value="6">05:00am</option>
-        <option value="7">06:00am</option>
-        <option value="8">07:00am</option>
-        <option value="9">08:00am</option>
-        <option value="10">09:00am</option>
-        <option value="11">10:00am</option>
-        <option value="12">11:00am</option>
-        <option value="13">12:00pm</option>
-        <option value="14">01:00pm</option>
-        <option value="15">02:00pm</option>
-        <option value="16">03:00pm</option>
-        <option value="17">04:00pm</option>
-        <option value="18">05:00pm</option>
-        <option value="19">06:00pm</option>
-        <option value="20">07:00pm</option>
-        <option value="21">08:00pm</option>
-        <option value="22">09:00pm</option>
-        <option value="23">10:00pm</option>
-        <option value="24">11:00pm</option>
-    </select>
+
+
+
+<div data-role="fieldcontain">
+   
     <p>
 
     <label for="select-choice" class="select">Travel Day</label>
@@ -110,5 +93,15 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript" charset="utf-8">
+            $(function()
+            {
+                var date = new Date();
+                $('#linked1').val(date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate());
+
+                $('#linked2').val(date.getHours() + ':' + date.getMinutes());
+
+            });
+        </script>
 	</body>
 </html>
