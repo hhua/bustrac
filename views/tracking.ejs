@@ -8,11 +8,28 @@
 		<link rel="stylesheet" href="css/style.css">
 		<style type="text/css" media="screen">
 			#list{
-				margin-top: 0;
+				margin-top: 20px;
 			}
 
 			.ui-input-search .ui-input-clear, .ui-input-text .ui-input-clear{
 				margin-top: 4px;
+			}
+
+			.ui-input-text{
+				transition-property: margin-top;
+				transition-duration: 1.5s;
+				transition-timing-function: linear;
+				transition-delay: 1s;
+
+				-moz-transition-property: margin-top;
+				-moz-transition-duration: 1.5s;
+				-moz-transition-timing-function: linear;
+				-moz-transition-delay: 1s;
+
+				-webkit-transition-property: margin-top;
+				-webkit-transition-duration: 1.5s;
+				-webkit-transition-timing-function: linear;
+				-webkit-transition-delay: 1s;
 			}
 		</style>
 		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
@@ -22,6 +39,8 @@
 	<div data-role="page">
 	
 	<div id="list" data-role="content">
+		<img id="logo" src="img/logo.png" style="margin:30px auto;"/>
+
 		<ul id="stoplist" data-role="listview" data-filter="true" data-filter-reveal="true" data-filter-placeholder="Bus Stops, Routes or Street Corners">
 			<!--
 		    <li>
@@ -48,6 +67,13 @@
 
 	</div>
 	<script type="text/javascript">
+		$(function(){
+        	$('.ui-input-text').focus(function(){
+        		$('#logo').remove();
+        		$('#list').css("margin-top", "0");
+        	});
+        })
+
 		// get stops
         $(function(){
             $.ajax({
@@ -65,6 +91,8 @@
         		list.append('<li class="ui-li ui-li-static ui-btn-up-c ui-screen-hidden"><form action="/bus_station" method="post"><input type="hidden" name="stop_id" value="' + data[i][0] + '" /><input type="hidden" name="stop_name" value="' + data[i][1] + '" /><a href="#" class="ui-link" onclick="$(this).closest(\'form\').submit();">' + data[i][1] + '</a></form></li>');
         	}
         }
+
+
 	</script>
 	</body>
 </html>
