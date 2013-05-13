@@ -18,8 +18,9 @@
 		var cur_latitude = -34.397;
 		var cur_longitude = 150.644;
 
+
 		$(function() {
-			$('#map_canvas').gmap({'center': '40.45, -79.8'});
+			//$.mobile.ajaxEnabled = false;
 			$('#map_canvas').gmap().bind('init', function(evt, map) {
 					$('#map_canvas').gmap('displayDirections', { 'origin': 'Forbes Ave at Morewood Ave, pittsburgh', 'destination': 'PGH INTERNATIONAL AIRPORT LOWERLEVEL(DOOR 6)', 'travelMode': google.maps.DirectionsTravelMode.TRANSIT }, { 'panel': document.getElementById('panel') }, function(result, status) {
 	                if ( status === 'OK' ) {
@@ -38,10 +39,12 @@
 				// 	});
 				// });
 			});
-			$('#map_canvas').gmap('addMarker', { /*id:'m_1',*/ 'position': '40.444482,-79.948737', 'bounds': true } ).click(function(){
+			$('#map_canvas').gmap('addMarker', { 'tags':'foo, bar', 'position': '40.444482,-79.948737', 'bounds': true } ).click(function(){
 				var contentString = '<div>28X (2mins)</div><div>Craig St at Forbes.</div>';
 				$('#map_canvas').gmap('openInfoWindow', { 'content': contentString }, this);
 			});
+
+			
 		});
 
 		</script>
