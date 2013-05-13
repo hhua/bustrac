@@ -16,20 +16,10 @@
 			}
 
 			.ui-input-text{
-				transition-property: margin-top;
-				transition-duration: 1.5s;
-				transition-timing-function: linear;
-				transition-delay: 1s;
-
-				-moz-transition-property: margin-top;
-				-moz-transition-duration: 1.5s;
-				-moz-transition-timing-function: linear;
-				-moz-transition-delay: 1s;
-
-				-webkit-transition-property: margin-top;
-				-webkit-transition-duration: 1.5s;
-				-webkit-transition-timing-function: linear;
-				-webkit-transition-delay: 1s;
+				-moz-transition:margin-top 2s;
+    			-webkit-transition:margin-top 2s;
+ 				-o-transition:margin-top 2s;
+    			transition:margin-top 2s;
 			}
 		</style>
 		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
@@ -39,7 +29,7 @@
 	<div data-role="page">
 	
 	<div id="list" data-role="content">
-		<img id="logo" src="img/logo.png" style="margin:30px auto;"/>
+		<img id="logo" src="img/logo.png" style="margin:30px auto; display: block;"/>
 
 		<ul id="stoplist" data-role="listview" data-filter="true" data-filter-reveal="true" data-filter-placeholder="Bus Stops, Routes or Street Corners">
 			<!--
@@ -88,7 +78,7 @@
 
         	for(var i in data){
         		//console.log(data[i][1]);
-        		list.append('<li class="ui-li ui-li-static ui-btn-up-c ui-screen-hidden"><form action="/bus_station" method="post"><input type="hidden" name="stop_id" value="' + data[i][0] + '" /><input type="hidden" name="stop_name" value="' + data[i][1] + '" /><a href="#" class="ui-link" onclick="$(this).closest(\'form\').submit();">' + data[i][1] + '</a></form></li>');
+        		list.append('<li class="ui-li ui-li-static ui-btn-up-c ui-screen-hidden"><form action="/bus_station" method="post"><input type="hidden" name="stop_id" value="' + data[i][0] + '" /><input type="hidden" name="stop_name" value="' + data[i][1] + '" /><a href="#" style="text-decoration: none; color: black;" class="ui-link" onclick="$(this).closest(\'form\').submit();">' + data[i][1] + '</a></form></li>');
         	}
         }
 

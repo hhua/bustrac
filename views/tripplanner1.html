@@ -118,7 +118,7 @@ $(document).delegate('#opendialog1', 'click', function() {
 
 		<div data-role='fieldcontain' style="margin-top: 50px;"> 
       <label for='vendor'>Depart at</label><br />
-      <input name="date" id="date" type="date" data-role="datebox" data-options='{"mode":"flipbox","useFocus": true}' />
+      <input name="date" id="date" type="text" data-role="datebox" data-options='{"mode":"flipbox","useFocus": true}' />
       <input name="time" id="time" type="text" data-role="datebox" data-options='{"mode":"timeflipbox","overrideTimeFormat": 12}' />
     </div>
 
@@ -158,8 +158,8 @@ $(document).delegate('#opendialog1', 'click', function() {
      $('#date').val(date);
      $('#time').val(time);
 
-     console.log(origin);
-     console.log(dest);
+     //console.log(origin);
+     //console.log(dest);
   </script>
 	</body>
 </html>
